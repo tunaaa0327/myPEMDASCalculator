@@ -80,19 +80,19 @@ public class ultimateVersion{
         //separate numbers from operations
         for(int i=0;i<notation.length();i++){
             if(Character.isDigit(notation.charAt(i))||notation.charAt(i)=='.'){
-                isDigit += notation.charAt(i);
+                isDigit += notation.charAt(i);//adds digits until operation exist
                 if(i==(notation.length()-1)){
-                    notationList.add(isDigit);
+                    notationList.add(isDigit);//adds last digits to list
                 }
             }else {
-                notationList.add(isDigit);
-                notationList.add(String.valueOf(notation.charAt(i)));
-                isDigit = "";
+                notationList.add(isDigit);//add isdigit to list
+                notationList.add(String.valueOf(notation.charAt(i)));//adds operation
+                isDigit = "";//resets value of isDigit
             }
 
 
         }
-        return notationList;
+        return notationList;// returns separated number and operators
     }
 
     //call Exponent Function
