@@ -1,4 +1,9 @@
 //This code will allows EMDAS(Exponent, Multiplication or Division, Addition or Subtraction)
 //Only Allows Single String Input
 //Utilizes List as container of numbers and operators
-//Implements methods, loops, conditionals, and try-catch
+//Implements methods, loops, conditionals, and arrayLiss
+
+
+//ultimateVersion
+//Allows multiple digits and operation
+//Allows placing of two decimal places
