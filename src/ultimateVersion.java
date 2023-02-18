@@ -1,23 +1,33 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ultimateVersion{
-    //now Allows any number of digits and decimal places
-    //multiple selected operation and numbers
-    //Implements methods, condition, loops, arraylist
-
+    //Allows exponent to exponent
+    //Outputs Double if Double else Integer;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Input Notation: ");
         String notation = sc.next();
 
         ArrayList<String> notationList = myNotationList(notation);
-        System.out.println("Notation: "+notationList);
+        System.out.println(notationList);
+
 
         ArrayList<String> resultList = myResultNotation(notationList);
-        System.out.println("Answer: "+resultList);
+        String answer = String.join("",resultList);//list to string
 
+        int div = answer.indexOf(".");
+        int numOne = Integer.parseInt(String.valueOf(answer.charAt(div+1)));
+        int numTwo = Integer.parseInt(String.valueOf(answer.charAt(div+2)));
+        double equal = Double.parseDouble(answer);
 
+        //prints out double if list contains double else integer
+        if(numOne>0||numTwo>0){
+            System.out.println("Answer is: "+String.format("%.2f",equal));
+        }else {
+            System.out.println("Answer is: "+ (int) equal);
+        }
 
     }
 
@@ -80,29 +90,35 @@ public class ultimateVersion{
         //separate numbers from operations
         for(int i=0;i<notation.length();i++){
             if(Character.isDigit(notation.charAt(i))||notation.charAt(i)=='.'){
-                isDigit += notation.charAt(i);//adds digits until operation exist
+                isDigit += notation.charAt(i);
                 if(i==(notation.length()-1)){
-                    notationList.add(isDigit);//adds last digits to list
+                    notationList.add((isDigit));
                 }
             }else {
-                notationList.add(isDigit);//add isdigit to list
-                notationList.add(String.valueOf(notation.charAt(i)));//adds operation
-                isDigit = "";//resets value of isDigit
+                notationList.add(isDigit);
+                notationList.add(String.valueOf(notation.charAt(i)));
+                isDigit = "";
             }
 
 
         }
-        return notationList;// returns separated number and operators
+        return notationList;
     }
 
     //call Exponent Function
     public static ArrayList<String> myPow(ArrayList<String> notationList){//[x,^,y]
-        int div = notationList.indexOf("^");//gets index of ^: 1
+        int occurrences = Collections.frequency(notationList,"^");
+        int div;
+        if(occurrences>1){
+            div = notationList.lastIndexOf("^");//gets index of ^: 1
+        }else{
+            div = notationList.indexOf("^");
+        }
         double base = Double.parseDouble(notationList.get(div-1)); //parse numbers index of list [1-1]||[0]: x
         double exponent = Double.parseDouble(notationList.get(div+1));//parse numbers index of list [1+1]||[2]: y
         String c = String.format("%.2f",Math.pow(base,exponent));// gets pow of base and exponent: z
         notationList.add(div,c);//[x,z,/,y]
-        notationList.remove("^");//[x,z,y]
+        notationList.remove(div+1);//[x,z,y]
         notationList.remove(div+1);//[x,z]
         notationList.remove(div-1);//[z]
         return notationList;//returns parameter list to an updated list
@@ -161,4 +177,3 @@ public class ultimateVersion{
         return notationList;
     }
 }
-
