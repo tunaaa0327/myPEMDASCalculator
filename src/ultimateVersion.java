@@ -3,8 +3,6 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class ultimateVersion{
-    //Allows exponent to exponent
-    //Outputs Double if Double else Integer;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Input Notation: ");
@@ -90,20 +88,29 @@ public class ultimateVersion{
         //separate numbers from operations
         for(int i=0;i<notation.length();i++){
             if(Character.isDigit(notation.charAt(i))||notation.charAt(i)=='.'){
-                isDigit += notation.charAt(i);
-                if(i==(notation.length()-1)){
-                    notationList.add((isDigit));
+                isDigit += notation.charAt(i);// concatenate a char to isDigit
+                if(i==(notation.length()-1)){//this adds last number in notation;
+                    notationList.add(isDigit);
                 }
             }else {
-                notationList.add(isDigit);
-                notationList.add(String.valueOf(notation.charAt(i)));
-                isDigit = "";
+                if(notation.charAt(0)=='-'&&i==0){//checks if notation starts with a negative
+                    isDigit += "-";//assigns a negative sign to isDigit
+                }else {
+                    notationList.add(isDigit);//add isDigit to list
+                    notationList.add(String.valueOf(notation.charAt(i)));//add operator to the list
+                    notationList.remove("");// remove blank index in list(helps if notation starts with negative)
+                    isDigit = "";//resets the value of isDigit
+                }
             }
-
-
         }
+
+        //returns a separated numbers and operators
         return notationList;
     }
+
+
+
+
 
     //call Exponent Function
     public static ArrayList<String> myPow(ArrayList<String> notationList){//[x,^,y]
