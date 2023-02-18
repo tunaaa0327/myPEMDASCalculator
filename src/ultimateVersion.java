@@ -5,26 +5,46 @@ import java.util.Scanner;
 public class ultimateVersion{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Input Notation: ");
-        String notation = sc.next();
 
+        //loop
+        while(true){
+            System.out.print("Input Notation: ");
+            String notation = sc.next();
+            myProcess(notation);
+
+            System.out.println("Redo?[y/n]: ");
+            String redo = sc.next().toLowerCase();
+
+            if(!redo.equals("y")){
+                break;
+            }
+
+        }
+
+    }
+
+
+    //process
+    public static void myProcess(String notation){
         ArrayList<String> notationList = myNotationList(notation);
-        System.out.println(notationList);
+        System.out.println(notationList);//prints separated numbers and operators
+
+        ArrayList<String> resultList = myResultNotation(notationList);//final answer
+        String resultString = String.join("",resultList);//list to string
+        double resultDouble = Double.parseDouble(resultString);//string to double
 
 
-        ArrayList<String> resultList = myResultNotation(notationList);
-        String answer = String.join("",resultList);//list to string
+        //variables to check if resultDouble is double or integer
+        int div = resultString.indexOf(".");//checks index of decimal point exist
+        int numOne = Integer.parseInt(String.valueOf(resultString.charAt(div+1)));
+        int numTwo = Integer.parseInt(String.valueOf(resultString.charAt(div+2)));
 
-        int div = answer.indexOf(".");
-        int numOne = Integer.parseInt(String.valueOf(answer.charAt(div+1)));
-        int numTwo = Integer.parseInt(String.valueOf(answer.charAt(div+2)));
-        double equal = Double.parseDouble(answer);
 
         //prints out double if list contains double else integer
         if(numOne>0||numTwo>0){
-            System.out.println("Answer is: "+String.format("%.2f",equal));
+            System.out.println("Answer is: "+String.format("%.2f",resultDouble));
         }else {
-            System.out.println("Answer is: "+ (int) equal);
+            System.out.println("Answer is: "+ (int) resultDouble);
         }
 
     }
