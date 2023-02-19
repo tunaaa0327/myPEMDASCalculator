@@ -10,7 +10,9 @@ public class prototypePEMDAS{
         //loop
         System.out.print("Input Notation: ");
         notation = sc.next();
-        if (notation.contains("(")) {
+
+
+        while(notation.contains("(")){
             int open = notation.indexOf("(");
             int close = notation.indexOf(")");
             if(Character.isDigit(notation.charAt(open-1))&&Character.isDigit(notation.charAt(close+1))){
@@ -23,13 +25,8 @@ public class prototypePEMDAS{
                     notation = addChar(notation,'*',close+1);
                 }
             }
-        }
-
-        System.out.println(notation);
-
-        while(notation.contains("(")){
-            int open = notation.indexOf("(");
-            int close = notation.indexOf(")");
+            open = notation.indexOf("(");
+            close = notation.indexOf(")");
             String myRep = notation.substring(open,close+1);
             String myParent = notation.substring(open,close+1);
             myParent = myParent.replace("(","");
