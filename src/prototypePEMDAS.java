@@ -21,10 +21,11 @@ public class prototypePEMDAS{
             }else {
                 if(Character.isDigit(notation.charAt(open-1))){
                     notation = addChar(notation,'*',open);
-                }else {
-                    notation = addChar(notation,'*',close+1);
+                } else if (Character.isDigit(notation.charAt(close+1))) {
+                    notation = addChar(notation, '*', close + 1);
                 }
             }
+
             open = notation.indexOf("(");
             close = notation.indexOf(")");
             String myRep = notation.substring(open,close+1);
