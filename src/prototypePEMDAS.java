@@ -6,10 +6,27 @@ import java.util.Scanner;
 public class prototypePEMDAS{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
+        String notation;
         //loop
         System.out.print("Input Notation: ");
-        String notation = sc.next();
+        notation = sc.next();
+        if (notation.contains("(")) {
+            int open = notation.indexOf("(");
+            int close = notation.indexOf(")");
+            if(Character.isDigit(notation.charAt(open-1))&&Character.isDigit(notation.charAt(close+1))){
+                notation = addChar(notation,'*',open);
+                notation = addChar(notation,'*',close+2);
+            }else {
+                if(Character.isDigit(notation.charAt(open-1))){
+                    notation = addChar(notation,'*',open);
+                }else {
+                    notation = addChar(notation,'*',close+1);
+                }
+            }
+        }
+
+        System.out.println(notation);
+
         while(notation.contains("(")){
             int open = notation.indexOf("(");
             int close = notation.indexOf(")");
@@ -30,6 +47,12 @@ public class prototypePEMDAS{
 
 
 
+    }
+
+    public static String addChar(String str, char ch, int position) {
+        StringBuilder sb = new StringBuilder(str);
+        sb.insert(position, ch);
+        return sb.toString();
     }
 
 
