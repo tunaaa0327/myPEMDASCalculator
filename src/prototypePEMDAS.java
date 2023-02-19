@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -21,7 +22,6 @@ public class prototypePEMDAS{
             String resultParent = String.join("",myResultNotation(notationParent));
             notation= notation.replace(myRep,resultParent);
         }
-
         ArrayList<String> notationList = myNotationList(notation);
         System.out.println("Notation: "+notationList);
 
@@ -126,11 +126,15 @@ public class prototypePEMDAS{
             }else {
                 if(notation.charAt(0)=='-'&&i==0){//checks if notation starts with a negative
                     isDigit += "-";//assigns a negative sign to isDigit
-                }else {
+                }else{
                     notationList.add(isDigit);//add isDigit to list
-                    notationList.add(String.valueOf(notation.charAt(i)));//add operator to the list
-                    notationList.remove("");// remove blank index in list(helps if notation starts with negative)
                     isDigit = "";//resets the value of isDigit
+                    if(notation.charAt(i)=='-'&&notation.charAt(i-1)=='-'){
+                        isDigit += "-";
+                    }else{
+                        notationList.add(String.valueOf(notation.charAt(i)));//add operator to the list
+                    }
+                    notationList.remove("");// remove blank index in list(helps if notation starts with negative)
                 }
             }
         }
