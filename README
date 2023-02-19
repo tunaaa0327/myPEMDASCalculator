@@ -1,9 +1,25 @@
 //This code will allows EMDAS(Exponent, Multiplication or Division, Addition or Subtraction)
-//Only Allows Single String Input
-//Utilizes List as container of numbers and operators
-//Implements methods, loops, conditionals, and arrayLiss
+>Single String Input
+>Utilizes Arraylist as container of numbers and operators
+>Implements methods, loops, conditionals, and arrayLiss
 
 
-//StableEMDAS
-//Allows multiple digits and operation
-//Allows placing of two decimal places
+//earlyPrototypes are coded before the stable was form and discover
+>Early days of this Calculator for fun;
+
+
+
+StableEMDAS
+//Calculates
+>Exponent, Multiplication or Division, Addition or Subtraction
+>Normal notation
+>Multiple digits and operation
+>Decimal places
+>Negative notation
+//Commented Out Process
+
+
+PrototypePEMDAS
+//Calculates
+>Parenthesis calculation
+//Can Run Into Errors
