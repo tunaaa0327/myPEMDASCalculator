@@ -150,7 +150,7 @@ public class prototypePEMDAS{
                 }else{
                     notationList.add(isDigit);//add isDigit to list
                     isDigit = "";//resets the value of isDigit
-                    if(notation.charAt(i)=='-'&&notation.charAt(i-1)=='-'){
+                    if(notation.charAt(i)=='-'&&!Character.isDigit(notation.charAt(i-1))){
                         isDigit += "-";
                     }else{
                         notationList.add(String.valueOf(notation.charAt(i)));//add operator to the list
