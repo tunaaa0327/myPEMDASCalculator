@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class onlyInteger {
+public class earlyEMDASInt {
     public static void main(String[] args) {
         ArrayList<String> notationList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);

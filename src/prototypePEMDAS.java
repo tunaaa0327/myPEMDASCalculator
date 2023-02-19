@@ -2,26 +2,37 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class ultimateVersion{
+public class prototypePEMDAS{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         //loop
-        while(true){
-            System.out.print("Input Notation: ");
-            String notation = sc.next();
-            myProcess(notation);
-
-            System.out.println("Redo?[y/n]: ");
-            String redo = sc.next().toLowerCase();
-
-            if(!redo.equals("y")){
-                break;
-            }
-
+        System.out.print("Input Notation: ");
+        String notation = sc.next();
+        while(notation.contains("(")){
+            int open = notation.indexOf("(");
+            int close = notation.indexOf(")");
+            String myRep = notation.substring(open,close+1);
+            String myParent = notation.substring(open,close+1);
+            myParent = myParent.replace("(","");
+            myParent = myParent.replace(")","");
+            ArrayList<String> notationParent;
+            notationParent = myNotationList(myParent);
+            String resultParent = String.join("",myResultNotation(notationParent));
+            notation= notation.replace(myRep,resultParent);
         }
 
+        ArrayList<String> notationList = myNotationList(notation);
+        System.out.println("Notation: "+notationList);
+
+        ArrayList<String> resultList = myResultNotation(notationList);
+        System.out.println("Answer: "+resultList);
+
+
+
     }
+
+
 
 
     //process
